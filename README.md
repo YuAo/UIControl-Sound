@@ -4,7 +4,7 @@ A simple UIControl category for adding sounds to UI controls such as UIButton, U
 
 ##What can it do?
 
-With this simple category. You can easily add sounds to all (or just one) of the buttons, switches, text fields, I mean UIControls, in your app, with just **[one line of code](#one-line-of-code)**.
+With this simple category. You can easily add sounds to all (or just one) of the buttons, switches, text fields, I mean UIControls, in your app, with just **[one line of code](#whats-the-one-line-of-code)**.
 
 ##What's included?
 
@@ -21,7 +21,7 @@ Two methods. Simple. Self-explanatory.
 
 ```
 
-##[What's the one line of code?](id:one-line-of-code)
+##What's the one line of code?
 
 We use `UIAppearance` to add sound for all of our controls.
 
