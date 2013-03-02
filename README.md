@@ -67,6 +67,7 @@ It looks a little tricky and involves message forwarding. But it's actually not 
 
 ##Requirements
 
+- AudioToolbox.framework
 - Automatic Reference Counting (ARC)
 - iOS 5.0+
 - Xcode 4.5+
