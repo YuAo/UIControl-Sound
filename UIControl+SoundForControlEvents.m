@@ -20,6 +20,10 @@
 @end
 
 
+void WUUIControlSoundManagerAudioServicesSystemSoundCompletionProc (SystemSoundID soundID, void *clientData) {
+    AudioServicesDisposeSystemSoundID(soundID);
+}
+
 NSString * const WUUIControlSoundManagerPlaySoundSelectorPrefix = @"playSound_";
 
 @interface WUUIControlSoundManager()
@@ -65,6 +69,9 @@ NSString * const WUUIControlSoundManagerPlaySoundSelectorPrefix = @"playSound_";
         NSURL *filePath = [NSURL fileURLWithPath:soundFileToPlay];
         SystemSoundID sound;
         AudioServicesCreateSystemSoundID((__bridge CFURLRef)filePath, &sound);
+        CFStringRef currentRunLoopMode = CFRunLoopCopyCurrentMode(CFRunLoopGetCurrent());
+        AudioServicesAddSystemSoundCompletion(sound, CFRunLoopGetCurrent(), currentRunLoopMode, &WUUIControlSoundManagerAudioServicesSystemSoundCompletionProc, NULL);
+        CFRelease(currentRunLoopMode);
         AudioServicesPlaySystemSound(sound);
     }
 }
