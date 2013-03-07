@@ -10,11 +10,11 @@
 @implementation UIControl (SoundForControlEvents)
 
 - (void)addSoundWithContentsOfFile:(NSString *)soundFilePath forControlEvents:(UIControlEvents)controlEvents {
-    [self addTarget:WUUIControlSoundManager.sharedSoundManager action:[WUUIControlSoundManager.sharedSoundManager selectorForPlayingSoundFileAtPath:soundFilePath] forControlEvents:controlEvents];
+    if (soundFilePath.length) [self addTarget:WUUIControlSoundManager.sharedSoundManager action:[WUUIControlSoundManager.sharedSoundManager selectorForPlayingSoundFileAtPath:soundFilePath] forControlEvents:controlEvents];
 }
 
 - (void)removeSoundWithContentsOfFile:(NSString *)soundFilePath forControlEvents:(UIControlEvents)controlEvents {
-    [self removeTarget:WUUIControlSoundManager.sharedSoundManager action:[WUUIControlSoundManager.sharedSoundManager selectorForPlayingSoundFileAtPath:soundFilePath] forControlEvents:controlEvents];
+    if (soundFilePath.length) [self removeTarget:WUUIControlSoundManager.sharedSoundManager action:[WUUIControlSoundManager.sharedSoundManager selectorForPlayingSoundFileAtPath:soundFilePath] forControlEvents:controlEvents];
 }
 
 @end
@@ -47,6 +47,7 @@ NSString * const WUUIControlSoundManagerPlaySoundSelectorPrefix = @"playSound_";
 }
 
 - (SEL)selectorForPlayingSoundFileAtPath:(NSString *)soundFilePath {
+    NSParameterAssert(soundFilePath);
     NSString *soundIdentifier = [self soundIdentifierForSoundFile:soundFilePath];
     return NSSelectorFromString([WUUIControlSoundManagerPlaySoundSelectorPrefix stringByAppendingString:soundIdentifier]);
 }
