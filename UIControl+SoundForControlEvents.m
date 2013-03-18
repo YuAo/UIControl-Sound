@@ -17,6 +17,13 @@
     if (soundFilePath.length) [self removeTarget:WUUIControlSoundManager.sharedSoundManager action:[WUUIControlSoundManager.sharedSoundManager selectorForPlayingSoundFileAtPath:soundFilePath] forControlEvents:controlEvents];
 }
 
+- (void)removeSoundsForControlEvents:(UIControlEvents)controlEvents {
+    NSArray *playSoundActions = [self actionsForTarget:WUUIControlSoundManager.sharedSoundManager forControlEvent:controlEvents];
+    [playSoundActions enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self removeTarget:WUUIControlSoundManager.sharedSoundManager action:NSSelectorFromString(obj) forControlEvents:controlEvents];
+    }];
+}
+
 @end
 
 

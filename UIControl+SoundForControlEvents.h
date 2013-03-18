@@ -16,6 +16,9 @@
 // Remove a sound for particular event.
 - (void)removeSoundWithContentsOfFile:(NSString *)soundFilePath forControlEvents:(UIControlEvents)controlEvents UI_APPEARANCE_SELECTOR;
 
+// Remove all sounds for particular event.
+- (void)removeSoundsForControlEvents:(UIControlEvents)controlEvents UI_APPEARANCE_SELECTOR;
+
 @end
 
 @interface WUUIControlSoundManager : NSObject
