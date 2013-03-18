@@ -8,7 +8,7 @@ With this simple category. You can easily add sounds to all (or just one) of the
 
 ##What's included?
 
-Two methods. Simple. Self-explanatory.
+3 methods. Simple. Self-explanatory.
 
 ```
 @interface UIControl (SoundForControlEvents)
@@ -16,6 +16,9 @@ Two methods. Simple. Self-explanatory.
 - (void)addSoundWithContentsOfFile:(NSString *)soundFilePath forControlEvents:(UIControlEvents)controlEvents UI_APPEARANCE_SELECTOR;
 
 - (void)removeSoundWithContentsOfFile:(NSString *)soundFilePath forControlEvents:(UIControlEvents)controlEvents UI_APPEARANCE_SELECTOR;
+
+// Remove all added sounds for particular event.
+- (void)removeSoundsForControlEvents:(UIControlEvents)controlEvents UI_APPEARANCE_SELECTOR;
 
 @end
 ```
