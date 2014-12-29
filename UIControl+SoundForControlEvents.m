@@ -63,7 +63,7 @@ NSString * const WUUIControlSoundManagerPlaySoundSelectorPrefix = @"playSound_";
     if (![self.soundFiles containsObject:filePath]) {
         [self.soundFiles addObject:filePath];
     }
-    return [NSString stringWithFormat:@"%x",filePath.hash];
+    return [NSString stringWithFormat:@"%lx",(unsigned long)filePath.hash];
 }
 
 - (void)playSoundWithIdentifier:(NSString *)soundIdentifier {
@@ -78,7 +78,7 @@ NSString * const WUUIControlSoundManagerPlaySoundSelectorPrefix = @"playSound_";
         SystemSoundID sound;
         AudioServicesCreateSystemSoundID((__bridge CFURLRef)filePath, &sound);
         CFStringRef currentRunLoopMode = CFRunLoopCopyCurrentMode(CFRunLoopGetCurrent());
-        AudioServicesAddSystemSoundCompletion(sound, CFRunLoopGetCurrent(), currentRunLoopMode, &WUUIControlSoundManagerAudioServicesSystemSoundCompletionProc, NULL);
+        AudioServicesAddSystemSoundCompletion(sound, NULL, currentRunLoopMode, &WUUIControlSoundManagerAudioServicesSystemSoundCompletionProc, NULL);
         CFRelease(currentRunLoopMode);
         AudioServicesPlaySystemSound(sound);
     }
